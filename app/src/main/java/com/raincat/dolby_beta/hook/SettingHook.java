@@ -326,7 +326,7 @@ public class SettingHook {
         ProxyHttpView proxyHttpView = new ProxyHttpView(context);
         ProxyPortView proxyPortView = new ProxyPortView(context);
         ProxyOriginalView proxyOriginalView = new ProxyOriginalView(context);
-       // ProxyKuwoView proxykuwoView = new ProxyKuwoView(context);
+        ProxyKuwoView proxykuwoView = new ProxyKuwoView(context);
         ProxyQqView proxyqqView = new ProxyQqView(context);
         ProxyMiguView proxymiguView = new ProxyMiguView(context);
 
@@ -334,7 +334,7 @@ public class SettingHook {
         dialogProxyRoot.addView(proxyHttpView);
         dialogProxyRoot.addView(proxyPortView);
         dialogProxyRoot.addView(proxyOriginalView);
-       // dialogProxyRoot.addView(proxykuwoView);
+        dialogProxyRoot.addView(proxykuwoView);
         dialogProxyRoot.addView(proxyqqView);
        // dialogProxyRoot.addView(proxymiguView);
         new AlertDialog.Builder(context)

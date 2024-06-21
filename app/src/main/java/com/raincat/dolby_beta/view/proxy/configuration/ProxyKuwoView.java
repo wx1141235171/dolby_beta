@@ -34,12 +34,12 @@ public class ProxyKuwoView extends BaseDialogInputItem {
     @Override
     public void init(Context context, AttributeSet attrs) {
         super.init(context, attrs);
-        title = SettingHelper.kuwo_cookie_title;
+        title = SettingHelper.kuwo_proxy_title;
         //editView.setKeyListener(DigitsKeyListener.getInstance("0123456789_.qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM; "));
-        setData(SettingHelper.getInstance().getKuwoCookie(), SettingHelper.kuwo_cookie_default);
+        setData(SettingHelper.getInstance().getKuwoProxy(), SettingHelper.kuwo_proxy_default);
 
         defaultView.setOnClickListener(view -> {
-            editView.setText(SettingHelper.kuwo_cookie_default);
+            editView.setText(SettingHelper.kuwo_proxy_default);
             editView.setSelection(editView.getText().length());
         });
 
@@ -56,7 +56,7 @@ public class ProxyKuwoView extends BaseDialogInputItem {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                SettingHelper.getInstance().setKuwoCookie(editView.getText().toString());
+                SettingHelper.getInstance().setKuwoProxy(editView.getText().toString());
             }
         });
     }
