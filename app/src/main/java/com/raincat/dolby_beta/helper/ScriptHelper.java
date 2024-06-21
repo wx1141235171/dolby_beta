@@ -90,6 +90,7 @@ public class ScriptHelper {
     }
 
     public static void startScript() {
+        //傳入酷我環境變量
         String script = String.format("export ENABLE_FLAC=%s&&export KUWO_PROXY=%s&&export MIN_BR=%s&&export QQ_COOKIE=\"%s\"&&export MIGU_COOKIE=\"%s\"&&libnode.so app.js -a 127.0.0.1 -o %s -p %s",
                 SettingHelper.getInstance().getSetting(SettingHelper.proxy_flac_key),
                 SettingHelper.getInstance().getKuwoProxy(),
