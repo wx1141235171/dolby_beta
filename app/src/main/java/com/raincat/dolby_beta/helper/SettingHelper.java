@@ -106,7 +106,7 @@ public class SettingHelper {
 
     public static final String kuwo_proxy_key = "β_kuwo_proxy_key";
     public static final String kuwo_proxy_title = "酷我源apk";
-    public static final String kuwo_proxy_default = "kwplayer_ar_6.0.1.0_apk_keluze.apk";
+    public static final String kuwo_proxy_default = "xxx.apk";
 
     public static final String qq_cookie_key = "β_qq_cookie_key";
     public static final String qq_cookie_title = "QQCookie";
