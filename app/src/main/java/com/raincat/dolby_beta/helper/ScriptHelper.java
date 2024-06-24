@@ -91,9 +91,11 @@ public class ScriptHelper {
 
     public static void startScript() {
         //传入酷我环境变量
+        String kuwoProxy = SettingHelper.getInstance().getKuwoProxy();
+        Tools.showToastOnLooper(neteaseContext, "酷我源为："+kuwoProxy);
         String script = String.format("export ENABLE_FLAC=%s&&export KUWO_PROXY=%s&&export MIN_BR=%s&&export QQ_COOKIE=\"%s\"&&export MIGU_COOKIE=\"%s\"&&libnode.so app.js -a 127.0.0.1 -o %s -p %s",
                 SettingHelper.getInstance().getSetting(SettingHelper.proxy_flac_key),
-                SettingHelper.getInstance().getKuwoProxy(),
+                kuwoProxy,
                 SettingHelper.getInstance().getSetting(SettingHelper.proxy_priority_key) ? "256000" : "96000",
                 SettingHelper.getInstance().getQqCookie(),
                 SettingHelper.getInstance().getMiguCookie(),
