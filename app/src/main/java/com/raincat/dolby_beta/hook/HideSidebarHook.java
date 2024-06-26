@@ -8,6 +8,7 @@ import android.widget.LinearLayout;
 import com.raincat.dolby_beta.helper.ClassHelper;
 import com.raincat.dolby_beta.helper.SettingHelper;
 import com.raincat.dolby_beta.model.SidebarEnum;
+import com.raincat.dolby_beta.utils.Tools;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -44,12 +45,17 @@ public class HideSidebarHook {
         }
 
         classDrawerItemEnum = XposedHelpers.findClassIfExists(classDrawerItemEnumString, context.getClassLoader());
-        if (classDrawerItemEnum == null)
+        if (classDrawerItemEnum == null) {
             classDrawerItemEnum = XposedHelpers.findClassIfExists("com.netease.cloudmusic.music.biz.sidebar.ui.MainDrawer$DrawerItemEnum", context.getClassLoader());
+        }
         if (classDrawerItemEnum != null && classDrawerItemEnum.isEnum()) {
+            XposedBridge.log("精简侧边栏获取到MainDrawer的class");
             Object[] enumConstants = classDrawerItemEnum.getEnumConstants();
+            XposedBridge.log("精简侧边栏获取到MainDrawer的enum数量："+enumConstants.length);
             SidebarEnum.setSidebarEnum(enumConstants);
             sidebarSettingMap = SettingHelper.getInstance().getSidebarSetting(SidebarEnum.getSidebarEnum());
+        }else {
+            XposedBridge.log("精简侧边栏未获取到MainDrawer的class");
         }
 
         if (versionCode >= 7003010 && ClassHelper.SidebarItem.getClazz(context) != null) {

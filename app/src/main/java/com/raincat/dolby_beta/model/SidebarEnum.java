@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import de.robv.android.xposed.XposedBridge;
+
 /**
  * <pre>
  *     author : RainCat
@@ -26,10 +28,12 @@ public class SidebarEnum {
         for (Object object : objectList) {
             tempMap.put(object.toString(), object.toString());
         }
+        XposedBridge.log("精简侧边栏代码预填enumMap的enum数量："+enumMap.size());
         for (Map.Entry<String, String> entry : enumMap.entrySet()) {
             if (tempMap.get(entry.getKey()) != null) {
                 sidebarMap.put(entry.getKey(), entry.getValue());
                 tempMap.remove(entry.getKey());
+                XposedBridge.log("去除tempMap中与预填enumMap的enum不一致的："+entry.getKey());
             }
         }
         if (tempMap.size() != 0) {
