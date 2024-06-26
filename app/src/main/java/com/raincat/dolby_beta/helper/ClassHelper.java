@@ -350,9 +350,12 @@ public class ClassHelper {
         public static Class<?> getClazz(Context context) {
             if (clazz == null) {
                 try {
-                    Pattern pattern = Pattern.compile("^com\\.netease\\.cloudmusic\\.module\\.account\\.[a-z]$");
+//                    Pattern pattern = Pattern.compile("^com\\.netease\\.cloudmusic\\.module\\.account\\.[a-z]$");
+                    Pattern pattern3 = Pattern.compile("^v20\\.[a-z]$");
+                    Pattern pattern4 = Pattern.compile("^qb0\\.[a-b]$");
                     Pattern pattern2 = Pattern.compile("^com\\.netease\\.cloudmusic\\.music\\.biz\\.sidebar\\.account\\.[a-z0-9]{1,2}$");
-                    List<String> list = ClassHelper.getFilteredClasses(pattern, Collections.reverseOrder());
+                    List<String> list = ClassHelper.getFilteredClasses(pattern3, Collections.reverseOrder());
+                    list.addAll(ClassHelper.getFilteredClasses(pattern4, Collections.reverseOrder()));
                     list.addAll(ClassHelper.getFilteredClasses(pattern2, Collections.reverseOrder()));
                     clazz = Stream.of(list)
                             .map(ClassHelper::getClassByXposed)

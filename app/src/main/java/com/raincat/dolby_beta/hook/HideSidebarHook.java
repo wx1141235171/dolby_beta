@@ -44,10 +44,8 @@ public class HideSidebarHook {
             objectMDrawerContainerString = "i";
         }
 
-        classDrawerItemEnum = XposedHelpers.findClassIfExists(classDrawerItemEnumString, context.getClassLoader());
-        if (classDrawerItemEnum == null) {
-            classDrawerItemEnum = XposedHelpers.findClassIfExists("com.netease.cloudmusic.music.biz.sidebar.ui.MainDrawer$DrawerItemEnum", context.getClassLoader());
-        }
+
+        classDrawerItemEnum = XposedHelpers.findClassIfExists("com.netease.cloudmusic.music.biz.sidebar.ui.MainDrawer$DrawerItemEnum", context.getClassLoader());
         if (classDrawerItemEnum != null && classDrawerItemEnum.isEnum()) {
             XposedBridge.log("精简侧边栏获取到MainDrawer的class");
             Object[] enumConstants = classDrawerItemEnum.getEnumConstants();
