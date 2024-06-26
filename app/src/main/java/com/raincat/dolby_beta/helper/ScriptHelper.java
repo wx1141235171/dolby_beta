@@ -3,12 +3,13 @@ package com.raincat.dolby_beta.helper;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.text.TextUtils;
 
-import com.raincat.dolby_beta.BuildConfig;
 import com.raincat.dolby_beta.Hook;
 import com.raincat.dolby_beta.net.HTTPSTrustManager;
 import com.raincat.dolby_beta.utils.Tools;
+import com.raincat.tools.BuildConfig;
 import com.stericson.RootShell.execution.Command;
 
 import java.io.File;
@@ -66,14 +67,12 @@ public class ScriptHelper {
     public static void initScript(Context context, boolean cover) {
         File unblockFile = new File(getScriptPath(context));
         neteaseContext = context;
-        if (cover || !unblockFile.exists() || !(BuildConfig.VERSION_CODE + "").equals(ExtraHelper.getExtraDate(ExtraHelper.APP_VERSION))) {
-            if (FileHelper.unzipFile(modulePath, getScriptPath(context), "assets", "UnblockNeteaseMusic.zip")) {
-                FileHelper.unzipFiles(getScriptPath(context) + "/UnblockNeteaseMusic.zip", getScriptPath(context));
-            }
-            Command auth = new Command(0, "cd " + getScriptPath(context), "chmod 0777 *");
-            Tools.shell(auth);
-            ExtraHelper.setExtraDate(ExtraHelper.APP_VERSION, BuildConfig.VERSION_CODE);
+        if (FileHelper.unzipFile(modulePath, getScriptPath(context), "assets", "UnblockNeteaseMusic.zip")) {
+            FileHelper.unzipFiles(getScriptPath(context) + "/UnblockNeteaseMusic.zip", getScriptPath(context));
         }
+        Command auth = new Command(0, "cd " + getScriptPath(context), "chmod 0777 *");
+        Tools.shell(auth);
+        ExtraHelper.setExtraDate(ExtraHelper.APP_VERSION, BuildConfig.VERSION_CODE);
         if (TextUtils.isEmpty(nodeLibPath)) {
             nodeLibPath = TextUtils.isEmpty(modulePath) ? "" : modulePath.substring(0, modulePath.lastIndexOf('/'));
             nodeLibPath = "export PATH=$PATH:" + nodeLibPath + "/lib/arm64:" + modulePath + "!/lib/arm64-v8a:" + context.getApplicationInfo().nativeLibraryDir;

@@ -391,6 +391,12 @@ public class SettingHook {
         scrollView.addView(dialogSidebarRoot);
 
         final LinkedHashMap<String, String> sidebarMap = SidebarEnum.getSidebarEnum();
+        if (sidebarMap == null) {
+            Tools.showToastOnLooper(context, "精简侧边栏未获取到sidebarMap");
+        } else {
+            Tools.showToastOnLooper(context, "精简侧边栏获取到sidebarMap大小为"+sidebarMap.size());
+        }
+
         final HashMap<String, Boolean> sidebarSettingMap = SettingHelper.getInstance().getSidebarSetting(sidebarMap);
         for (Map.Entry<String, String> entry : sidebarMap.entrySet()) {
             BeautySidebarHideItem item = new BeautySidebarHideItem(context);
